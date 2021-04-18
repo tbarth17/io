@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <meta id="viewport" name="viewport" content ="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style type="text/css">
+      @font-face {
+          font-family: "Futura";
+          src: url(fonts/futura/futur.ttf) format("truetype");
+      }
+
+      @font-face {
+          font-family: "Harmonia";
+          src: url(fonts/harmonia/HarmoniaSansW01Regular.otf) format("opentype");
+      }
+    </style>
+    <style media="screen">
+      html, body {
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        background: black;
+      }
+
+      button {
+        font-family: 'Futura';
+        color: #fff;
+        opacity: 1;
+        border: none;
+        /* border: 1px solid chartreuse; */
+        height: 100%;
+        width: 100%;
+        background: transparent;
+      }
+
+      .hidden {
+        opacity: 0;
+        transition: opacity 1.5s ease-in-out .5s;
+      }
+
+      .logo {
+        height: 80px;
+      }
+
+      button>h2 {
+        font-size: 72px;
+        margin: 0;
+      }
+
+      .video-button>h3 {
+        font-size: 22px;
+        font-family: 'Harmonia';
+      }
+
+      .audio-button>h3 {
+        font-size: 18px;
+        font-family: 'Harmonia';
+      }
+
+      .video-button {
+        flex: 2;
+      }
+
+      .audio-button {
+        flex: 1;
+      }
+
+      .content-slide {
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        z-index: 3;
+        display: flex;
+        flex-direction: column;
+        transition: opacity .75s ease-in-out .5s;
+        background: black;
+      }
+
+
+      .social-footer {
+        flex: 1;
+        display: flex;
+        flex-direction: row;
+      }
+
+      .social-link {
+        background: transparent;
+        flex: 1;
+        bottom: 32px;
+        height: 100%;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+      }
+
+      .social-link>svg {
+        fill: #fff;
+        height: 25%;
+        width: 25%;
+      }
+
+      .social-link.facebook>svg {
+        margin-right: 50%;
+      }
+
+      .social-link.instagram>svg {
+        margin-left: 50%;
+      }
+
+      #video-player {
+        position: absolute;
+        min-width: 100%;
+        min-height: 56.25vw;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+      }
+
+      #video-player.desktop {
+        width: 178vh;
+      }
+
+      #video-container {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        /* flex: 5; */
+        position: absolute;
+        overflow: hidden;
+        transition: opacity .75s ease-in-out .5s;
+      }
+    </style>
+    <script type="text/javascript">
+      window.isMobile = true
+      if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        window.isMobile = true
+      } else {
+        window.isMobile = false
+      }
+    </script>
+  </head>
+  <body>
+    <!-- <div class="video-slide">
+
+    </div> -->
+    <div id="content-slide" class="content-slide">
+      <button id='video-play-button' class="video-button">
+        <img class="logo" src="assets/logo.png" alt="">
+        <h3>tap for a message</h3>
+      </button>
+      <button id='audio-play-button' class="audio-button">
+        <h3>meditate with us</h3>
+      </button>
+      <div class="social-footer">
+        <a class="social-link instagram" target="_blank" href="https://www.instagram.com/loveio.io">
+          <svg class="MuiSvgIcon-root jss162" focusable="false" viewBox="0 0 24 24" aria-hidden="true" tabindex="-1" title="Instagram" data-ga-event-category="material-icons" data-ga-event-action="click" data-ga-event-label="Instagram"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"></path></svg>
+        </a>
+        <a class="social-link facebook" target="_blank" href="https://www.facebook.com/iolove.io">
+          <svg class="MuiSvgIcon-root jss162" focusable="false" viewBox="0 0 24 24" aria-hidden="true" tabindex="-1" title="Facebook" data-ga-event-category="material-icons" data-ga-event-action="click" data-ga-event-label="Facebook"><path d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2m13 2h-2.5A3.5 3.5 0 0 0 12 8.5V11h-2v3h2v7h3v-7h3v-3h-3V9a1 1 0 0 1 1-1h2V5z"></path></svg>
+        </a>
+      </div>
+    </div>
+    <div id="video-container"></div>
+    <audio id="audio-player">
+      <source src="assets/audio.mp3">
+    </audio>
+
+    <script type="text/javascript">
+      var videoContainer = document.getElementById('video-container')
+      var audioPlayer = document.getElementById('audio-player')
+      var audioButton = document.getElementById('audio-play-button')
+      var videoButton = document.getElementById('video-play-button')
+      var contentSlide = document.getElementById('content-slide')
+
+      function appendVideoPlayer () {
+        var player = document.createElement('video')
+        player.src = window.isMobile ? 'assets/iolandingmobile.mp4' : 'assets/iolandingdesktop.mp4'
+        player.autoplay = 'false'
+        player.id = 'video-player'
+        if (!window.isMobile) { player.classList.add('desktop') }
+        videoContainer.append(player)
+      }
+      appendVideoPlayer()
+
+      var videoPlayer = document.getElementById('video-player')
+      var videoPlaying
+      var audioPlaying
+
+      function toggleVideo (ev) {
+        if (audioPlaying) {
+          toggleAudio()
+          return
+        }
+        if (!videoPlaying) {
+          videoPlaying = true
+          videoPlayer.play()
+          contentSlide.classList.add('hidden')
+          videoPlayer.classList.remove('hidden')
+        } else {
+          videoPlayer.pause()
+          videoPlaying = false
+          contentSlide.classList.remove('hidden')
+          videoPlayer.classList.add('hidden')
+        }
+      }
+
+      videoButton.onclick = toggleVideo
+
+      function toggleAudio (ev) {
+        if (videoPlaying) {
+          toggleVideo
+        }
+        if (!audioPlaying) {
+          audioPlaying = true
+          audioPlayer.play()
+          contentSlide.classList.add('hidden')
+        } else {
+          audioPlayer.pause()
+          audioPlaying = false
+          contentSlide.classList.remove('hidden')
+        }
+      }
+
+      audioButton.onclick = toggleAudio
+
+      function videoEndHandler(e) {
+          contentSlide.classList.add('hidden')
+          audioButton.classList.remove('hidden')
+          videoPlayer.zIndex = "-1"
+      }
+      videoPlayer.addEventListener('ended',videoEndHandler,false);
+
+    </script>
+
+  </body>
+</html>
