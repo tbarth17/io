@@ -229,15 +229,38 @@
       var contentSlide = document.getElementById('content-slide')
 
       function appendVideoPlayer () {
+        var req = new XMLHttpRequest();
+        var src = window.isMobile ? 'assets/iolandingmobile.mov' : 'assets/iolandingdesktop.mp4'
+
         var player = document.createElement('video')
-        player.src = window.isMobile ? 'assets/iolandingmobile.mov' : 'assets/iolandingdesktop.mp4'
         player.autoplay = 'false'
         player.id = 'video-player'
-        player.preload = 'auto'
+
+        req.open('GET', src, true);
+        req.responseType = 'blob';
+
+        req.onload = function() {
+           // Onload is triggered even on 404
+           // so we need to check the status code
+           if (this.status === 200) {
+              var videoBlob = this.response;
+              var vid = URL.createObjectURL(videoBlob); // IE10+
+              // Video is now downloaded
+              // and we can set it as source on the video element
+              player.src = vid;
+           }
+        }
+        req.onerror = function() {
+           // Error
+        }
+
+        req.send();
+
         if (!window.isMobile) {
           player.classList.add('desktop')
           socialFooter.classList.add('desktop')
         }
+
         videoContainer.append(player)
       }
       appendVideoPlayer()
