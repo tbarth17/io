@@ -199,7 +199,7 @@
             <img class="logo" src="assets/logo.png" alt="">
           </div>
         </div>
-        <div class="message-container">
+        <div id="message-container" class="message-container hidden">
           <h3>tap for a message</h3>
         </div>
       </button>
@@ -221,6 +221,7 @@
     </audio>
 
     <script type="text/javascript">
+      var messageContainer = document.getElementById('message-container')
       var videoContainer = document.getElementById('video-container')
       var socialFooter = document.getElementById('social-footer')
       var audioPlayer = document.getElementById('audio-player')
@@ -248,6 +249,7 @@
               // Video is now downloaded
               // and we can set it as source on the video element
               player.src = vid;
+              messageContainer.classList.remove('hidden')
            }
         }
         req.onerror = function() {
