@@ -29,7 +29,6 @@
         color: #fff;
         opacity: 1;
         border: none;
-        /* border: 1px solid chartreuse; */
         height: 100%;
         width: 100%;
         background: transparent;
@@ -287,6 +286,7 @@
           contentSlide.classList.add('hidden')
           audioButton.classList.remove('hidden')
           videoPlayer.zIndex = "-1"
+          videoPlayer.currentTime = 0
       }
       videoPlayer.addEventListener('ended',videoEndHandler,false);
 
