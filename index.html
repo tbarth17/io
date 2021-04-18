@@ -233,6 +233,7 @@
         player.src = window.isMobile ? 'assets/iolandingmobile.mov' : 'assets/iolandingdesktop.mp4'
         player.autoplay = 'false'
         player.id = 'video-player'
+        player.preload = 'auto'
         if (!window.isMobile) {
           player.classList.add('desktop')
           socialFooter.classList.add('desktop')
