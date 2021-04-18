@@ -48,23 +48,52 @@
         height: 80px;
       }
 
+      .logo-image-container {
+        height: 80px;
+      }
+
       button>h2 {
         font-size: 72px;
         margin: 0;
       }
 
-      .video-button>h3 {
-        font-size: 22px;
+      .message-container>h3 {
+        font-size: 18px;
         font-family: 'Harmonia';
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        margin-top: 0;
       }
 
       .audio-button>h3 {
-        font-size: 18px;
+        font-size: 15px;
         font-family: 'Harmonia';
       }
 
       .video-button {
         flex: 2;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .logo-container {
+        height: 100%;
+        width: 100%;
+        flex: 2;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .message-container {
+        height: 100%;
+        width: 100%;
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-content: center;
       }
 
       .audio-button {
@@ -154,8 +183,14 @@
     </div> -->
     <div id="content-slide" class="content-slide">
       <button id='video-play-button' class="video-button">
-        <img class="logo" src="assets/logo.png" alt="">
-        <h3>tap for a message</h3>
+        <div class="logo-container">
+          <div class="logo-image-container">
+            <img class="logo" src="assets/logo.png" alt="">
+          </div>
+        </div>
+        <div class="message-container">
+          <h3>tap for a message</h3>
+        </div>
       </button>
       <button id='audio-play-button' class="audio-button">
         <h3>meditate with us</h3>
